@@ -1,23 +1,18 @@
 const mongoose = require("mongoose");
-var mongoURL = 'mongodb+srv://pradhanprabhu28:rg5r5J8CNDGKYAEi@cluster0.aosy7.mongodb.net/'
-const prot=5000;
-mongoose.connect(mongoURL, {useUnifiedTopology : true , useNewUrlParser:true})
-        .then(()=>{
-            app.listen(prot,()=>{
-                console.log("conneced sucessfull")
-            })
-        }
-    )
-    .catch((err)=>console.log(err))
+ 
+var mongoURL = "mongodb+srv://pradhanprabhu28:rg5r5J8CNDGKYAEi@cluster0.aosy7.mongodb.net/mern-rooms?retryWrites=true&w=majority";
 
-// var connection = mongoose.connection
+// Connect to MongoDB
+mongoose.connect(mongoURL, {useUnifiedtopology : true , useNewUrlParser:true})
 
-// connection.on('error', ()=>{
-//     console.log('MongoDB connection failed')
-// })
+var connection = mongoose.connection
 
-// connection.on('connected successfully',()=>{
-//     console.log("MongoDB connected successfully")
-// })
+connection.on('error',()=>{
+    console.log('Mongodb connection failed')
+})
 
-module.exports = mongoose 
+connection.on('connected',()=>{
+    console.log('Mongodb connection successfull')
+}) 
+
+module.exports = mongoose
